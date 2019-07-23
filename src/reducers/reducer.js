@@ -17,13 +17,13 @@ export const reducer = (state, action) => {
             const newItem = {
                 item: action.payload, 
                 completed: false, 
-                id: new Date.now() 
+                id: Date.now() 
             }
             return {
             ...state,
              list: [...state.list, newItem]
             }
-        case 'TOGGLE_COMPLETED':
+        case TOGGLE_COMPLETED:
             return {
                 ...state,
                 list: state.list.map(item => {
