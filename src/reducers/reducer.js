@@ -1,5 +1,6 @@
 export const ADD_ITEM = 'ADD_ITEM';
 export const TOGGLE_COMPLETED = 'TOGGLE_COMPLETED';
+export const CLEAR_COMPLETED = 'CLEAR_COMPLETED';
 
 export const initialState = {
     list: [
@@ -33,6 +34,11 @@ export const reducer = (state, action) => {
                         else {return item};
                     }
                 )
+            }
+        case CLEAR_COMPLETED:
+            return{
+                ...state,
+                    list: state.list.filter(item => !item.completed)
             }
         default:
             return state

@@ -5,7 +5,8 @@ import {
   reducer,
   initialState,
   ADD_ITEM,
-  TOGGLE_COMPLETED } from './reducers/reducer'
+  TOGGLE_COMPLETED,
+  CLEAR_COMPLETED } from './reducers/reducer'
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -18,10 +19,15 @@ function App() {
   const toggleItem = (item) => {
     dispatch({ type: TOGGLE_COMPLETED, payload: item.id })
   }
+  const clearItems = e => {
+    e.preventDefault()
+    dispatch({ type: CLEAR_COMPLETED });
+  }
 
   return (
     <div>
       <TodoForm addItem={addItem} />
+      <button onClick={clearItems}>Clear Completed</button>
       {state.list.map(listObj => {return <p className={`todo${listObj.completed ? ' completed' : ''}`} onClick={() => toggleItem(listObj)}>{listObj.item}</p>})}
     </div>
   );
